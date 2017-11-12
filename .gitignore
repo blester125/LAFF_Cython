@@ -3,3 +3,4 @@ LAFF
 *.c
 *.html
 __pycache__
+LAFF_env
