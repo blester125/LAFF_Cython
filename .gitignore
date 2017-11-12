@@ -1,0 +1,5 @@
+build
+LAFF
+*.c
+*.html
+__pycache__
