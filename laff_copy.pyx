@@ -1,4 +1,5 @@
 import cython
+from cython.parallel import prange
 import numpy as np
 cimport numpy as np
 
@@ -26,17 +27,17 @@ cpdef np.ndarray[DTYPE_t, ndim=2] laff_copy(
 
     if n_x == 1:
         if n_y == 1:
-            for i in range(m_x):
+            for i in prange(m_x, nogil=True):
                 y[i, 0] = x[i, 0]
         else:
-            for i in range(m_x):
+            for i in prange(m_x, nogil=True):
                 y[0, i] = x[i, 0]
     else:
         if n_y == 1:
-            for i in range(n_x):
+            for i in prange(n_x, nogil=True):
                 y[i, 0] = x[0, i]
         else:
-            for i in range(n_x):
+            for i in prange(n_x, nogil=True):
                 y[0, i] = x[0, i]
 
     return y

@@ -1,4 +1,5 @@
 import cython
+from cython.parallel import prange
 import numpy as np
 cimport numpy as np
 
@@ -27,17 +28,17 @@ cpdef np.ndarray[DTYPE_t, ndim=2] laff_axpy(
 
     if n_x == 1:
         if n_y == 1:
-            for i in range(x.shape[0]):
+            for i in prange(m_x, nogil=True):
                 y[i, 0] = alpha * x[i, 0] + y[i, 0]
         else:
-            for i in range(x.shape[0]):
+            for i in prange(m_x, nogil=True):
                 y[0, i] = alpha * x[i, 0] + y[0, i]
     else:
         if n_y == 1:
-            for i in range(x.shape[1]):
+            for i in prange(n_x, nogil=True):
                 y[i, 0] = alpha * x[0, i] + y[i, 0]
         else:
-            for i in range(x.shape[1]):
+            for i in prange(n_x, nogil=True):
                 y[0, i] = alpha * x[0, i] + y[0, i]
 
     return y

@@ -1,4 +1,5 @@
 import cython
+from cython.parallel import prange
 import numpy as np
 cimport numpy as np
 
@@ -19,10 +20,10 @@ def laff_scal(
         raise ValueError("x must be a row or column vector.")
 
     if n_x == 1:
-        for i in range(m_x):
+        for i in prange(m_x, nogil=True):
             x[i, 0] = x[i, 0] * alpha
     else:
-        for i in range(n_x):
+        for i in prange(n_x, nogil=True):
             x[0, i] = x[0, i] * alpha
 
     return x

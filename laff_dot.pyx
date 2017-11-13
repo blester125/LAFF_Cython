@@ -1,4 +1,5 @@
 import cython
+from cython.parallel import prange
 import numpy as np
 cimport numpy as np
 
@@ -30,17 +31,17 @@ cpdef double laff_dot(
 
     if n_x == 1:
         if n_y == 1:
-            for i in range(m_x):
-                dot_product = dot_product + y[i, 0] * x[i, 0]
+            for i in prange(m_x, nogil=True):
+                dot_product += y[i, 0] * x[i, 0]
         else:
-            for i in range(m_x):
-                dot_product = dot_product + y[0, i] * x[i, 0]
+            for i in prange(m_x, nogil=True):
+                dot_product += y[0, i] * x[i, 0]
     else:
         if n_y == 1:
-            for i in range(n_x):
-                dot_product = dot_product + y[i, 0] * x[0, i]
+            for i in prange(n_x, nogil=True):
+                dot_product += y[i, 0] * x[0, i]
         else:
-            for i in range(n_x):
-                dot_product = dot_product + y[0, i] * x[0, i]
+            for i in prange(n_x, nogil=True):
+                dot_product += y[0, i] * x[0, i]
 
     return dot_product
