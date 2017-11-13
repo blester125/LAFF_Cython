@@ -8,6 +8,8 @@ test with `python -m unittest discover -p 'test_*.py'`
 ### Notes:
 ##
 
+Assignments from [edX course](https://www.edx.org/course/linear-algebra-foundations-frontiers-utaustinx-ut-5-05x-0)
+
 Currently Cython uses a depreciated numpy API which will throw a warning during compliation. This is being worked on by the cython developers and can be saftly ignored.
 
 Currently the cython functions only take np.ndarrays of type np.float.
