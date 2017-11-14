@@ -1,9 +1,7 @@
 import cython
 from cython.parallel import prange
-import numpy as np
 cimport numpy as np
 
-DTYPE = np.float32
 ctypedef np.float_t DTYPE_t
 
 
