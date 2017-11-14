@@ -8,8 +8,8 @@ test with `python -m unittest discover -p 'test_*.py'`
 ### Notes:
 ##
 
-Currently Cython uses a depreciated numpy API which will throw a warning during compliation. This is being worked on by the cython developers and can be saftly ignored.
+Assignments from [edX course](https://www.edx.org/course/linear-algebra-foundations-frontiers-utaustinx-ut-5-05x-0)
+
+Currently Cython uses a depreciated numpy API which will throw a warning during compilation. This is being worked on by the cython developers and can be safely ignored.
 
 Currently the cython functions only take np.ndarrays of type np.float64.
-
-I plan to add some simple parallelism with OpenMP at some point.
