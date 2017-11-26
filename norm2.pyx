@@ -1,17 +1,17 @@
 import cython
 cimport numpy as np
 from libc.math cimport sqrt
-from LAFF.laff_dot import laff_dot
+from LAFF.dot import dot
 
 ctypedef np.float_t DTYPE_t
 
-cpdef double laff_norm2(
+cpdef double norm2(
         np.ndarray[DTYPE_t, ndim=2] x
 ) except -1:
-    cdef double dot
+    cdef double dot_product
     cdef double norm
 
-    dot = laff_dot(x, x)
-    norm = sqrt(dot)
+    dot_product = dot(x, x)
+    norm = sqrt(dot_product)
 
     return norm

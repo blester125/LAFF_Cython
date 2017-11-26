@@ -6,9 +6,10 @@ ctypedef np.float_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef np.ndarray[DTYPE_t, ndim=2] laff_copy(
-    np.ndarray[DTYPE_t, ndim=2] x,
-    np.ndarray[DTYPE_t, ndim=2] y
+cpdef np.ndarray[DTYPE_t, ndim=2] axpy(
+        float alpha,
+        np.ndarray[DTYPE_t, ndim=2] x,
+        np.ndarray[DTYPE_t, ndim=2] y
 ):
     cdef int m_x = x.shape[0]
     cdef int n_x = x.shape[1]
@@ -26,16 +27,16 @@ cpdef np.ndarray[DTYPE_t, ndim=2] laff_copy(
     if n_x == 1:
         if n_y == 1:
             for i in prange(m_x, nogil=True):
-                y[i, 0] = x[i, 0]
+                y[i, 0] = alpha * x[i, 0] + y[i, 0]
         else:
             for i in prange(m_x, nogil=True):
-                y[0, i] = x[i, 0]
+                y[0, i] = alpha * x[i, 0] + y[0, i]
     else:
         if n_y == 1:
             for i in prange(n_x, nogil=True):
-                y[i, 0] = x[0, i]
+                y[i, 0] = alpha * x[0, i] + y[i, 0]
         else:
             for i in prange(n_x, nogil=True):
-                y[0, i] = x[0, i]
+                y[0, i] = alpha * x[0, i] + y[0, i]
 
     return y

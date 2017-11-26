@@ -6,7 +6,7 @@ ctypedef np.float_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def laff_scal(
+cpdef np.ndarray[DTYPE_t, ndim=2] scal(
         float alpha,
         np.ndarray[DTYPE_t, ndim=2] x
 ):

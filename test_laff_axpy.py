@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LAFF.laff_axpy import laff_axpy
+from LAFF.axpy import axpy
 
 
 class LaffAXPYTest(unittest.TestCase):
@@ -20,47 +20,47 @@ class LaffAXPYTest(unittest.TestCase):
 
     def test_column_column_axpy(self):
         gold = self.alpha * self.x + self.y
-        result = laff_axpy(self.alpha, self.x, self.y)
+        result = axpy(self.alpha, self.x, self.y)
         np.testing.assert_allclose(result, gold)
 
     def test_column_row_axpy(self):
         gold = self.alpha * self.x + self.y
-        result = laff_axpy(self.alpha, self.x, self.y.T)
+        result = axpy(self.alpha, self.x, self.y.T)
         np.testing.assert_allclose(result, gold.T)
 
     def test_row_column_axpy(self):
         gold = self.alpha * self.x + self.y
-        result = laff_axpy(self.alpha, self.x.T, self.y)
+        result = axpy(self.alpha, self.x.T, self.y)
         np.testing.assert_allclose(result, gold)
 
     def test_row_row_axpy(self):
         gold = self.alpha * self.x.T + self.y.T
-        result = laff_axpy(self.alpha, self.x.T, self.y.T)
+        result = axpy(self.alpha, self.x.T, self.y.T)
         np.testing.assert_allclose(result, gold)
 
     def test_bad_alpha(self):
         self.assertRaises(
-            Exception, laff_axpy, np.array([3, 4]), self.x, self.y
+            Exception, axpy, np.array([3, 4]), self.x, self.y
         )
 
     def test_column_column_axpy_wrong_size(self):
         self.assertRaises(
-            Exception, laff_axpy, self.alpha, self.x, self.z
+            Exception, axpy, self.alpha, self.x, self.z
         )
 
     def test_column_row_axpy_wrong_size(self):
         self.assertRaises(
-            Exception, laff_axpy, self.alpha, self.x, self.z.T
+            Exception, axpy, self.alpha, self.x, self.z.T
         )
 
     def test_row_column_axpy_wrong_size(self):
         self.assertRaises(
-            Exception, laff_axpy, self.alpha, self.x.T, self.z
+            Exception, axpy, self.alpha, self.x.T, self.z
         )
 
     def test_row_row_axpy_wrong_size(self):
         self.assertRaises(
-            Exception, laff_axpy, self.alpha, self.x.T, self.z.T
+            Exception, axpy, self.alpha, self.x.T, self.z.T
         )
 
 

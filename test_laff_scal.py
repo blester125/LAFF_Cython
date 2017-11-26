@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LAFF.laff_scal import laff_scal
+from LAFF.scal import scal
 
 
 class LaffScalTest(unittest.TestCase):
@@ -13,18 +13,18 @@ class LaffScalTest(unittest.TestCase):
 
     def test_column_scale(self):
         gold = self.alpha * self.x
-        np.testing.assert_allclose(laff_scal(self.alpha, self.x), gold)
+        np.testing.assert_allclose(scal(self.alpha, self.x), gold)
 
     def test_row_scale(self):
         gold = self.alpha * self.x.T
-        np.testing.assert_allclose(laff_scal(self.alpha, self.x.T), gold)
+        np.testing.assert_allclose(scal(self.alpha, self.x.T), gold)
 
     def test_bad_alpha(self):
-        self.assertRaises(Exception, laff_scal, np.array([3, 4]), self.x)
+        self.assertRaises(Exception, scal, np.array([3, 4]), self.x)
 
     def test_bad_x(self):
         bad_x = np.random.randn(2, 2)
-        self.assertRaises(Exception, laff_scal, self.alpha, bad_x)
+        self.assertRaises(Exception, scal, self.alpha, bad_x)
 
 
 if __name__ == "__main__":
