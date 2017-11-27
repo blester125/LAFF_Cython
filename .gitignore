@@ -1,6 +1,7 @@
 build
 LAFF
 *.c
+*.so
 *.html
 __pycache__
 LAFF_env

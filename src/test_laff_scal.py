@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LAFF.scal import scal
+from .scal import scal
 
 
 class LaffScalTest(unittest.TestCase):

@@ -1,7 +1,7 @@
 import cython
 cimport numpy as np
 from libc.math cimport sqrt
-from LAFF.dot import dot
+from .dot import dot
 
 ctypedef np.float_t DTYPE_t
 

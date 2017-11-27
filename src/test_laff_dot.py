@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LAFF.dot import dot
+from .dot import dot
 
 
 class LaffDotTest(unittest.TestCase):

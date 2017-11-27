@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LAFF.axpy import axpy
+from .axpy import axpy
 
 
 class LaffAXPYTest(unittest.TestCase):

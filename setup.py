@@ -7,7 +7,7 @@ import numpy
 ext_modules = [
     Extension(
         "*",
-        sources=["*.pyx"],
+        sources=["src/*.pyx"],
         libraries=["m"],
         include_dirs=[numpy.get_include()]
     )

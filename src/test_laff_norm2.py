@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LAFF.norm2 import norm2
+from .norm2 import norm2
 
 
 class LaffNorm2Test(unittest.TestCase):

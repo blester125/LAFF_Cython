@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from LAFF.copy import copy
+from .copy import copy
 
 
 class LaffCopyTest(unittest.TestCase):
