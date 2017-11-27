@@ -12,6 +12,7 @@ class DiagonalTest(unittest.TestCase):
 
     def test_diagonal_with_row(self):
         a = diagonal(self.A, self.x)
+        np.testing.assert_allclose(np.sum(a), np.sum(self.x))
         for i in range(a.shape[0]):
             for j in range(a.shape[1]):
                 if i == j:
@@ -22,6 +23,7 @@ class DiagonalTest(unittest.TestCase):
     def test_diagonal_with_col(self):
         x = np.reshape(self.x, [-1, 1])
         a = diagonal(self.A, x)
+        np.testing.assert_allclose(np.sum(a), np.sum(self.x))
         for i in range(a.shape[0]):
             for j in range(a.shape[1]):
                 if i == j:

@@ -7,18 +7,21 @@ ctypedef np.float_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef np.ndarray[DTYPE_t, ndim=2] UnitUpper(
+cpdef np.ndarray[DTYPE_t, ndim=2] identity(
     np.ndarray[DTYPE_t, ndim=2] A
 ):
-    cdef int m_x = A.shape[0]
-    cdef int n_x = A.shape[1]
+    cdef int m_a = A.shape[0]
+    cdef int n_a = A.shape[1]
     cdef int i, j
 
-    for i in prange(m_x, nogil=True):
-        for j in prange(n_x):
+    if m_a != n_a:
+        raise ValueError("A must be a square matrix.")
+
+    for i in prange(m_a, nogil=True):
+        for j in prange(n_a):
             if i == j:
                 A[i, j] = 1
-            elif i > j:
+            else:
                 A[i, j] = 0
 
     return A

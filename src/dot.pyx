@@ -2,8 +2,6 @@ import cython
 from cython.parallel import prange
 cimport numpy as np
 
-ctypedef np.float_t DTYPE_t
-
 
 @cython.boundscheck(False)
 @cython.wraparound(False)

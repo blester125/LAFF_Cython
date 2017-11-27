@@ -3,18 +3,21 @@ import numpy as np
 from .zeros import zeros
 
 
-class LAFFOnesTest(unittest.TestCase):
+class LAFFZerosTest(unittest.TestCase):
 
     def setUp(self):
-        self.number_or_rows = np.random.randint(1, 20)
-        self.number_or_cols = np.random.randint(1, 20)
-        self.A = np.random.randn(self.number_or_rows, self.number_or_cols)
+        self.rows = np.random.randint(1, 20)
+        self.cols = np.random.randint(1, 20)
+        self.A = np.random.randn(self.rows, self.cols)
 
-    def test_ones(self):
+    def test_zeros(self):
         a = zeros(self.A)
         assert np.sum(a) == 0
-        np.testing.assert_allclose(a, np.zeros([self.number_or_rows, self.number_or_cols]))
+        np.testing.assert_allclose(a, np.zeros([self.rows, self.cols]))
 
+    def test_shape(self):
+        a = zeros(self.A)
+        assert a.shape == (self.rows, self.cols)
 
 if __name__ == "__main__":
     unittest.main()

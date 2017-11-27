@@ -1,12 +1,12 @@
-import cython
+# !python
+# cython: boundscheck=False, wraparound=False
+
 from cython.parallel import prange
 cimport numpy as np
 
 ctypedef np.float_t DTYPE_t
 
-@cython.boundscheck(False)
-@cython.wraparound(False)
-cpdef np.ndarray[DTYPE_t, ndim=2] scal(
+cpdef np.ndarray[DTYPE_t, ndim=2] scale(
         float alpha,
         np.ndarray[DTYPE_t, ndim=2] x
 ):
@@ -25,3 +25,18 @@ cpdef np.ndarray[DTYPE_t, ndim=2] scal(
             x[0, i] = x[0, i] * alpha
 
     return x
+
+
+cpdef np.ndarray[DTYPE_t, ndim=2] scale_matrix(
+        float alpha,
+        np.ndarray[DTYPE_t, ndim=2] A
+):
+    cdef int m_a = A.shape[0]
+    cdef int n_a = A.shape[1]
+    cdef int i, j
+
+    for i in prange(m_a, nogil=True):
+        for j in prange(n_a):
+            A[i, j] = alpha * A[i, j]
+
+    return A
