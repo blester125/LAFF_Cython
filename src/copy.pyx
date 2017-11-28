@@ -1,14 +1,12 @@
 import cython
 from cython.parallel import prange
-cimport numpy as np
 
-ctypedef np.float_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef np.ndarray[DTYPE_t, ndim=2] copy(
-    np.ndarray[DTYPE_t, ndim=2] x,
-    np.ndarray[DTYPE_t, ndim=2] y
+cpdef double[:, ::1] copy(
+        double[:, ::1] x,
+        double[:, ::1] y
 ):
     cdef int m_x = x.shape[0]
     cdef int n_x = x.shape[1]

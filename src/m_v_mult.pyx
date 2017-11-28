@@ -1,17 +1,14 @@
 import cython
 from cython.parallel import prange
 import numpy as np
-cimport numpy as np
 from .dot cimport dot
-
-ctypedef np.float_t DTYPE_t
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef np.ndarray[DTYPE_t, ndim=2] m_v_mult(
-    np.ndarray[DTYPE_t, ndim=2] A,
-    np.ndarray[DTYPE_t, ndim=2] x
+cpdef double[:, ::1] m_v_mult(
+        double[:, ::1] A,
+        double[:, ::1] x
 ):
     cdef int m_a = A.shape[0]
     cdef int n_a = A.shape[1]
@@ -23,9 +20,9 @@ cpdef np.ndarray[DTYPE_t, ndim=2] m_v_mult(
         raise ValueError("Inner columns are not equal. Got shapes {} and {}".format(n_a, m_x))
 
     out = np.ndarray((m_a, n_x), dtype=np.float64)
-    cdef DTYPE_t [:, :] out_view = out
+    cdef double[:, ::1] out_view = out
 
     for i in range(m_a):
-        out[i, 0] = dot(A[np.newaxis, i, :], x)
+        out[i, 0] = dot(A[None, i, ::1].copy(), x)
 
     return out

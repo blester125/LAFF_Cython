@@ -1,15 +1,13 @@
 import cython
 from cython.parallel import prange
-cimport numpy as np
 
-ctypedef np.float_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef np.ndarray[DTYPE_t, ndim=2] axpy(
+cpdef double[:, ::1] axpy(
         float alpha,
-        np.ndarray[DTYPE_t, ndim=2] x,
-        np.ndarray[DTYPE_t, ndim=2] y
+        double[:, ::1] x,
+        double[:, ::1] y
 ):
     cdef int m_x = x.shape[0]
     cdef int n_x = x.shape[1]

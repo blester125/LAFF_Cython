@@ -1,14 +1,12 @@
 import cython
 from cython.parallel import prange
-cimport numpy as np
 
-ctypedef np.float_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cpdef np.ndarray[DTYPE_t, ndim=2] add_matrix(
-    np.ndarray[DTYPE_t, ndim=2] A,
-    np.ndarray[DTYPE_t, ndim=2] B
+cpdef double[:, ::1] add_matrix(
+        double[:, ::1] A,
+        double[:, ::1] B
 ):
     cdef int m_a = A.shape[0]
     cdef int n_a = A.shape[1]

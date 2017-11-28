@@ -2,13 +2,11 @@
 # cython: boundscheck=False, wraparound=False
 
 from cython.parallel import prange
-cimport numpy as np
 
-ctypedef np.float_t DTYPE_t
 
-cpdef np.ndarray[DTYPE_t, ndim=2] scale(
+cpdef double[:, ::1] scale(
         float alpha,
-        np.ndarray[DTYPE_t, ndim=2] x
+        double[:, ::1] x
 ):
     cdef int m_x = x.shape[0]
     cdef int n_x = x.shape[1]
@@ -27,9 +25,9 @@ cpdef np.ndarray[DTYPE_t, ndim=2] scale(
     return x
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] scale_matrix(
+cpdef double[:, ::1] scale_matrix(
         float alpha,
-        np.ndarray[DTYPE_t, ndim=2] A
+        double[:, ::1] A
 ):
     cdef int m_a = A.shape[0]
     cdef int n_a = A.shape[1]

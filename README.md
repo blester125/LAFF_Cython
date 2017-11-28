@@ -10,6 +10,4 @@ test with `python -m unittest discover -p 'test_*.py'`
 
 Assignments from [edX course](https://www.edx.org/course/linear-algebra-foundations-frontiers-utaustinx-ut-5-05x-0)
 
-Currently Cython uses a depreciated numpy API which will throw a warning during compilation. This is being worked on by the cython developers and can be safely ignored.
-
-Currently the cython functions only take np.ndarrays of type np.float64.
+Functions take buffer objects with 2 dimensions containing doubles.

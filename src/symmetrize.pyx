@@ -2,13 +2,10 @@
 # cython: boundscheck=False, wraparound=False
 
 from cython.parallel import prange
-cimport numpy as np
-
-ctypedef np.float_t DTYPE_t
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] symmetrize_from_upper(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] symmetrize_from_upper(
+        double[:, ::1] A
 ):
     cdef int m_a = A.shape[0]
     cdef int n_a = A.shape[1]
@@ -24,8 +21,8 @@ cpdef np.ndarray[DTYPE_t, ndim=2] symmetrize_from_upper(
     return A
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] symmetrize_from_lower(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] symmetrize_from_lower(
+        double[:, ::1] A
 ):
     cdef int m_a = A.shape[0]
     cdef int n_a = A.shape[1]

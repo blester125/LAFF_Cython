@@ -2,13 +2,10 @@
 # cython: boundscheck=False, wraparound=False
 
 from cython.parallel import prange
-cimport numpy as np
-
-ctypedef np.float_t DTYPE_t
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] LowerTriangle(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] LowerTriangle(
+        double[:, ::1] A
 ):
     cdef int m_x = A.shape[0]
     cdef int n_x = A.shape[1]
@@ -25,8 +22,8 @@ cpdef np.ndarray[DTYPE_t, ndim=2] LowerTriangle(
     return A
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] StrictlyLower(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] StrictlyLower(
+        double[:, ::1] A
 ):
     cdef int m_x = A.shape[0]
     cdef int n_x = A.shape[1]
@@ -43,8 +40,8 @@ cpdef np.ndarray[DTYPE_t, ndim=2] StrictlyLower(
     return A
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] UnitLower(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] UnitLower(
+        double[:, ::1] A
 ):
     cdef int m_x = A.shape[0]
     cdef int n_x = A.shape[1]
@@ -63,8 +60,8 @@ cpdef np.ndarray[DTYPE_t, ndim=2] UnitLower(
     return A
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] UpperTriangle(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] UpperTriangle(
+        double[:, ::1] A
 ):
     cdef int m_x = A.shape[0]
     cdef int n_x = A.shape[1]
@@ -81,8 +78,8 @@ cpdef np.ndarray[DTYPE_t, ndim=2] UpperTriangle(
     return A
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] StrictlyUpper(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] StrictlyUpper(
+        double[:, ::1] A
 ):
     cdef int m_x = A.shape[0]
     cdef int n_x = A.shape[1]
@@ -99,8 +96,8 @@ cpdef np.ndarray[DTYPE_t, ndim=2] StrictlyUpper(
     return A
 
 
-cpdef np.ndarray[DTYPE_t, ndim=2] UnitUpper(
-    np.ndarray[DTYPE_t, ndim=2] A
+cpdef double[:, ::1] UnitUpper(
+        double[:, ::1] A
 ):
     cdef int m_x = A.shape[0]
     cdef int n_x = A.shape[1]

@@ -1,20 +1,19 @@
 import cython
 from cython.parallel import prange
-cimport numpy as np
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cpdef double dot(
-        np.ndarray[DTYPE_t, ndim=2] x,
-        np.ndarray[DTYPE_t, ndim=2] y
+        double[:, ::1] x,
+        double[:, ::1] y
 ) except -1:
     cdef int m_x = x.shape[0]
     cdef int n_x = x.shape[1]
     cdef int m_y = y.shape[0]
     cdef int n_y = y.shape[1]
     cdef int i
-    cdef double dot_product
+    cdef double dot_product = 0.0
 
     if m_x != 1 and n_x != 1:
         raise ValueError("x must be a row or column vector.")
@@ -22,8 +21,6 @@ cpdef double dot(
         raise ValueError("y must be a row or column vector.")
     if m_x * n_x != m_y * n_y:
         raise ValueError("x and y must be the same size.")
-
-    dot_product = 0.0
 
     if n_x == 1:
         if n_y == 1:
