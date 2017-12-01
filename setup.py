@@ -10,8 +10,8 @@ ext_modules = [
         sources=["src/*.pyx"],
         libraries=["m"],
         include_dirs=[numpy.get_include()],
-        #extra_compile_args=['-fopenmp'],
-        #extra_link_args=['-fopenmp']
+        # extra_compile_args=['-fopenmp'],
+        # extra_link_args=['-fopenmp']
     )
 ]
 
